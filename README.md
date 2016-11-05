@@ -1,36 +1,25 @@
-pimatic-pushbullet
+pimatic-whatsapp
 =======================
 
-A plugin for sending [pushbullet](https://www.pushbullet.com/) notifications in pimatic.
+A plugin for sending Whatsapp notifications in pimatic.
 
 Configuration
 -------------
 You can load the backend by editing your `config.json` to include:
 
     {
-      "plugin": "pushbullet",
-      "apikey": "xxxxxxxxxxxxxxxxxxxxxxxxxx"
+      "plugin": "whatsapp",
+      "sender_phone": 0162XXXXXXXX,
+      "password": "XXX",
+      "cc": 49
     }
 
-in the `plugins` section. You can indicate which Device or Channel should be pushed to. For all configuration options see 
-[pushbullet-config-schema](pushbullet-config-schema.coffee)
+in the `plugins` section. For all configuration options see
+[whatsapp-config-schema](whatsapp-config-schema.coffee)
 
-Currently you can send pushbullet notifications via action handler within rules.
+Currently you can send Whatsapp notifications via action handler within rules.
 
 Example:
 --------
-By default if the type is not specified it sends a note notification
+    if it is 08:00 send whatsapp message:"Good morning Dave!" to 0176XXXXXXXX
 
-    if it is 08:00 push title:"Good morning!" message:"Good morning Dave!"
-
-if you want to send a file you need to specify 'file' as type and in the message the location of the file like:
-
-    if it is 10:00 push title:"Good morning!" message:"/home/pi/photo.jpg" type:"file"
-
-if you want to send a file or note to a specific channel you can add channel to your rule:
-
-    if it is 8:00 push title:"Good morning!" message:"Good morning to all of you" channel:"my_flatmates"
-
-in general:
-
-    if X then push title: "title of the push notification" message: "message for the notification" type: "note|file"
